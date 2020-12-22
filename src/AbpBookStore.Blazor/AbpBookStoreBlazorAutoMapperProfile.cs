@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AbpBookStore.Application.Contracts.Authors;
+using AbpBookStore.Application.Contracts.Books;
+using AutoMapper;
 
 namespace AbpBookStore.Blazor
 {
@@ -6,7 +8,8 @@ namespace AbpBookStore.Blazor
     {
         public AbpBookStoreBlazorAutoMapperProfile()
         {
-            //Define your AutoMapper configuration here for the Blazor project.
+            CreateMap<BookDto, UpdateBookDto>();
+            CreateMap<AuthorDto, UpdateAuthorDto>();            
         }
     }
 }

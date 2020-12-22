@@ -1,4 +1,6 @@
-﻿using AbpBookStore.Application.Contracts.Books;
+﻿using AbpBookStore.Application.Contracts.Authors;
+using AbpBookStore.Application.Contracts.Books;
+using AbpBookStore.Domain.Authors;
 using AbpBookStore.Domain.Books;
 using AutoMapper;
 
@@ -15,6 +17,13 @@ namespace AbpBookStore
       CreateMap<Book, BookDto>();
       CreateMap<CreateBookDto, Book>();
       CreateMap<UpdateBookDto, Book>();
+
+
+      CreateMap<Author, AuthorDto>();
+      CreateMap<CreateAuthorDto, Author>();
+      CreateMap<UpdateAuthorDto, Author>();
+      CreateMap<Author, AuthorLookupDto>();
+
     }
   }
 }

@@ -6,6 +6,8 @@ namespace AbpBookStore.Application.Contracts.Books
 {
     public class BookDto :  FullAuditedEntityDto<Guid>
     {
+        public Guid AuthorId { get; set; }
+        public string AuthorName { get; set; }
         public string Name { get; set; }
         public BookType Type { get; set; }
         public DateTime PublishDate { get; set; }

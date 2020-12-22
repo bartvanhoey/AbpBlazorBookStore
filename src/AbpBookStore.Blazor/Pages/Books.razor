@@ -1,11 +1,8 @@
-@* "NewBook": "New book", *@
 @page "/books"
-@* @attribute [Authorize(AbpBookStorePermissions.Book.Default)] *@
+@attribute [Authorize(AbpBookStorePermissions.Book.Default)]
 @using Volo.Abp.Application.Dtos
 @using Volo.Abp.BlazoriseUI
-@* below namespace where IBookAppService exists *@
 @using AbpBookStore.Application.Contracts.Books
-@* @using AbpBookStore.Application.Contracts.Books.Dtos *@
 @using AbpBookStore.Domain.Shared.Books
 @using AbpBookStore.Localization
 @using AbpBookStore.Permissions
@@ -46,6 +43,8 @@
           </DisplayTemplate>
         </DataGridEntityActionsColumn>
         <DataGridColumn TItem="BookDto" Field="@nameof(BookDto.Name)" Caption="@L["BookName"]"></DataGridColumn>
+        <DataGridColumn TItem="BookDto" Field="@nameof(BookDto.AuthorName)" Caption="@L["BookAuthorName"]">
+        </DataGridColumn>
         <DataGridColumn TItem="BookDto" Field="@nameof(BookDto.Type)" Caption="@L["BookType"]">
           <DisplayTemplate>
             @L[$"Enum:BookType:{(int)context.Type}"]
@@ -80,6 +79,18 @@
         <Row>
           <Column ColumnSize="ColumnSize.Is12">
             <Validation MessageLocalizer="@LH.Localize">
+              <Field>
+                <FieldLabel>@L["BookAuthor"]</FieldLabel>
+                <Select TValue="Guid" @bind-SelectedValue="@NewEntity.AuthorId">
+                  <SelectItem TValue="Guid" Value="Guid.Empty">@L["PickAnAuthor"]</SelectItem>
+                  @foreach (var item in authorList)
+                  {
+                    <SelectItem TValue="Guid" Value="@item.Id">
+                        @item.Name
+                    </SelectItem>
+                  }
+                </Select>
+              </Field>
               <Field>
                 <FieldLabel>@L["BookName"]</FieldLabel>
                 <TextEdit @bind-text="@NewEntity.Name">
@@ -134,8 +145,19 @@
           <Column ColumnSize="ColumnSize.Is12">
             <Validation MessageLocalizer="@LH.Localize">
               <Field>
+                <FieldLabel>@L["BookAuthor"]</FieldLabel>
+                <Select TValue="Guid" @bind-SelectedValue="@EditingEntity.AuthorId">
+                  @foreach (var item in authorList)
+                  {
+                    <SelectItem TValue="Guid" Value="@item.Id">
+                        @item.Name
+                    </SelectItem>
+                  }
+                </Select>
+              </Field>
+              <Field>
                 <FieldLabel>@L["BookName"]</FieldLabel>
-                <TextEdit @bind-text="EditingEntity.Name" >
+                <TextEdit @bind-text="EditingEntity.Name">
                   <Feedback>
                     <ValidationError />
                   </Feedback>
@@ -143,16 +165,24 @@
               </Field>
               <Field>
                 <FieldLabel>@L["BookType"]</FieldLabel>
-                <Select TValue="Book" @bind-SelectedValue="@EditingEntity.Type">
-                  @foreach (int value in Enum.GetValues(typeof(Book)))
+                <Select TValue="BookType" @bind-SelectedValue="@EditingEntity.Type">
+                  @foreach (int value in Enum.GetValues(typeof(BookType)))
                   {
-                    <SelectItem TValue="Book" Value="@((Book)value)">
-                        @L[$"Enum:Book:{value}"]
+                    <SelectItem TValue="BookType" Value="@((BookType)value)">
+                      @L[$"Enum:BookType:{value}"]
                     </SelectItem>
                   }
                 </Select>
               </Field>
-              
+              <Field>
+                <FieldLabel>@L["PublishDate"]</FieldLabel>
+                <DateEdit TValue="DateTime" @bind-Date="EditingEntity.PublishDate" />
+              </Field>
+              <Field>
+                <FieldLabel>@L["Price"]</FieldLabel>
+                <NumericEdit TValue="float" @bind-Value="EditingEntity.Price" />
+              </Field>
+
             </Validation>
           </Column>
         </Row>
@@ -169,10 +199,19 @@
 
 @code
 {
+  protected IReadOnlyList<AuthorLookupDto> authorList = Array.Empty<AuthorLookupDto>();
+
+
+  protected override async Task OnInitializedAsync()
+  {
+    await base.OnInitializedAsync();
+    authorList = (await AppService.GetAuthorLookupAsync()).Items;
+  }
+
   public Books()
   {
-    // CreatePolicyName = AbpBookStorePermissions.Book.Create;
-    // UpdatePolicyName = AbpBookStorePermissions.Book.Update;
-    // DeletePolicyName = AbpBookStorePermissions.Book.Delete;
+    CreatePolicyName = AbpBookStorePermissions.Book.Create;
+    UpdatePolicyName = AbpBookStorePermissions.Book.Update;
+    DeletePolicyName = AbpBookStorePermissions.Book.Delete;
   }
 }

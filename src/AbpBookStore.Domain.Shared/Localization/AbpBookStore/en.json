@@ -26,6 +26,21 @@
         "Enum:BookType:5": "Horror",
         "Enum:BookType:6": "Science",
         "Enum:BookType:7": "Science fiction",
-        "Enum:BookType:8": "Poetry"
+        "Enum:BookType:8": "Poetry",
+        "Permission:AbpBookStore": "Book Store",
+        "Permission:Book": "Book Management",
+        "Permission:Book:Create": "Creating books",
+        "Permission:Book:Update": "Editing books",
+        "Permission:Book:Delete": "Deleting books",
+        "Menu:Books": "Books",
+        "Menu:Authors": "Authors",
+        "NewAuthor": "New author",
+        "AuthorDeletionConfirmationMessage": "Are you sure to delete the author '{0}'?",
+        "PickAnAuthor": "Pick an author",
+        "BookStore:00001": "There is already an author with the same name: {name}",
+        "Permission:Author": "Author Management",
+        "Permission:Author:Create": "Creating authors",
+        "Permission:Author:Update": "Editing authors",
+        "Permission:Author:Delete": "Deleting authors"
     }
 }

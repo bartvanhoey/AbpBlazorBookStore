@@ -6,6 +6,7 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
 using AbpBookStore.Domain.Books;
+using AbpBookStore.Domain.Authors;
 
 namespace AbpBookStore.EntityFrameworkCore
 {
@@ -27,6 +28,8 @@ namespace AbpBookStore.EntityFrameworkCore
          * Also map them inside AbpBookStoreDbContextModelCreatingExtensions.ConfigureAbpBookStore
          */
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+
 
         public AbpBookStoreDbContext(DbContextOptions<AbpBookStoreDbContext> options)
             : base(options)

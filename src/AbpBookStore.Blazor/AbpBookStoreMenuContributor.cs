@@ -6,6 +6,7 @@ using AbpBookStore.Localization;
 using Volo.Abp.Account.Localization;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.Users;
+using AbpBookStore.Permissions;
 
 namespace AbpBookStore.Blazor
 {
@@ -30,7 +31,7 @@ namespace AbpBookStore.Blazor
             }
         }
 
-        private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+        private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
             var l = context.GetLocalizer<AbpBookStoreResource>();
 
@@ -44,16 +45,25 @@ namespace AbpBookStore.Blazor
                 )
             );
 
-
             var bookStoresMenu = new ApplicationMenuItem("bookStoresMenu",l["Menu:bookStores"], icon: "fa fa-book");
-            var booksMenu = new ApplicationMenuItem("booksMenu",l["Menu:books"], url: "/books");
-            
-            bookStoresMenu.AddItem(booksMenu);
-
             context.Menu.AddItem(bookStoresMenu);
 
+            
+            if (await context.IsGrantedAsync(AbpBookStorePermissions.Book.Default))
+            {
+                var booksMenu = new ApplicationMenuItem("BooksMenu", l["Menu:Books"], url: "/books");
+                bookStoresMenu.AddItem(booksMenu);
+            }
 
-            return Task.CompletedTask;
+
+            if (await context.IsGrantedAsync(AbpBookStorePermissions.Author.Default))
+            {
+                var authorsMenu = new ApplicationMenuItem("AuthorsMenu", l["Menu:Authors"], url: "/authors");
+                bookStoresMenu.AddItem(authorsMenu);
+            }
+
+
+            // return Task.CompletedTask;
         }
 
         private Task ConfigureUserMenuAsync(MenuConfigurationContext context)

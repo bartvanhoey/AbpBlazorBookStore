@@ -1,4 +1,6 @@
-﻿using AbpBookStore.Domain.Books;
+﻿using AbpBookStore.Domain.Authors;
+using AbpBookStore.Domain.Books;
+using AbpBookStore.Domain.Shared.Authors;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -27,6 +29,16 @@ namespace AbpBookStore.EntityFrameworkCore
             
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
                 // b.HasIndex(x => x.Name);
+                b.HasOne<Author>().WithMany().HasForeignKey(x => x.AuthorId).IsRequired();
+            });
+
+            builder.Entity<Author>(b =>
+            {
+                b.ToTable(AbpBookStoreConsts.DbTablePrefix + "Authors", AbpBookStoreConsts.DbSchema);
+                b.ConfigureByConvention();
+            
+                b.Property(x => x.Name).IsRequired().HasMaxLength(AuthorConsts.MaxNameLength);
+                b.HasIndex(x => x.Name);
             });
         }
     }
