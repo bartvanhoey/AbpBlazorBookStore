@@ -4,35 +4,26 @@ using Volo.Abp.Localization;
 
 namespace AbpBookStore.Permissions
 {
-    public class AbpBookStorePermissionDefinitionProvider : PermissionDefinitionProvider
+  public class AbpBookStorePermissionDefinitionProvider : PermissionDefinitionProvider
+  {
+    public override void Define(IPermissionDefinitionContext context)
     {
-        public override void Define(IPermissionDefinitionContext context)
-        {
-            // var myGroup = context.AddGroup(AbpBookStorePermissions.GroupName);
+      var bookStoreGroup = context.AddGroup(AbpBookStorePermissions.GroupName);
 
-            var bookStoreGroup = context.AddGroup(AbpBookStorePermissions.GroupName);
+      var booksPermission = bookStoreGroup.AddPermission(AbpBookStorePermissions.Book.Default, L("Permission:Book"));
+      booksPermission.AddChild(AbpBookStorePermissions.Book.Create, L("Permission:Book:Create"));
+      booksPermission.AddChild(AbpBookStorePermissions.Book.Update, L("Permission:Book:Update"));
+      booksPermission.AddChild(AbpBookStorePermissions.Book.Delete, L("Permission:Book:Delete"));
 
-
-            //Define your own permissions here. Example:
-            //myGroup.AddPermission(AbpBookStorePermissions.MyPermission1, L("Permission:MyPermission1"));
-
-            var booksPermission = bookStoreGroup.AddPermission(AbpBookStorePermissions.Book.Default, L("Permission:Book"));
-            booksPermission.AddChild(AbpBookStorePermissions.Book.Create, L("Permission:Book:Create"));
-            booksPermission.AddChild(AbpBookStorePermissions.Book.Update, L("Permission:Book:Update"));
-            booksPermission.AddChild(AbpBookStorePermissions.Book.Delete, L("Permission:Book:Delete"));
-            
-            var authorsPermission = bookStoreGroup.AddPermission(AbpBookStorePermissions.Author.Default, L("Permission:Author"));
-            authorsPermission.AddChild(AbpBookStorePermissions.Author.Create, L("Permission:Author:Create"));
-            authorsPermission.AddChild(AbpBookStorePermissions.Author.Update, L("Permission:Author:Update"));
-            authorsPermission.AddChild(AbpBookStorePermissions.Author.Delete, L("Permission:Author:Delete"));
-            
-            
-
-        }
-
-        private static LocalizableString L(string name)
-        {
-            return LocalizableString.Create<AbpBookStoreResource>(name);
-        }
+      var authorsPermission = bookStoreGroup.AddPermission(AbpBookStorePermissions.Author.Default, L("Permission:Author"));
+      authorsPermission.AddChild(AbpBookStorePermissions.Author.Create, L("Permission:Author:Create"));
+      authorsPermission.AddChild(AbpBookStorePermissions.Author.Update, L("Permission:Author:Update"));
+      authorsPermission.AddChild(AbpBookStorePermissions.Author.Delete, L("Permission:Author:Delete"));
     }
+
+    private static LocalizableString L(string name)
+    {
+      return LocalizableString.Create<AbpBookStoreResource>(name);
+    }
+  }
 }
