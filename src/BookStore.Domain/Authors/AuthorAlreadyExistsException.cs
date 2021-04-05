@@ -2,7 +2,7 @@ using Volo.Abp;
 
 namespace BookStore.Domain.Authors
 {
-    xbu
+    
 
     public class AuthorAlreadyExistsException  : BusinessException
     {

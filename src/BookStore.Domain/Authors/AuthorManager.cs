@@ -25,7 +25,8 @@ namespace BookStore.Domain.Authors
             return new Author(GuidGenerator.Create(), name, birthDate, shortBio);
         }
 
-        xme
+
+        
 
 
     }
