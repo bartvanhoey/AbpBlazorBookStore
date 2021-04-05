@@ -251,10 +251,12 @@ paket-files/
 .idea/
 *.sln.iml
 
-# AbpBookStore
-src/AbpBookStore.Web/Logs/*
-src/AbpBookStore.Web.Host/Logs/*
-src/AbpBookStore.IdentityServer/Logs/*
-src/AbpBookStore.HttpApi.Host/Logs/*
-src/AbpBookStore.HttpApi.Host/Logs/*
-src/AbpBookStore.DbMigrator/Logs/*
+# BookStore
+src/BookStore.Web/Logs/*
+src/BookStore.Web.Host/Logs/*
+src/BookStore.IdentityServer/Logs/*
+src/BookStore.HttpApi.Host/Logs/*
+src/BookStore.HttpApi.Host/Logs/*
+src/BookStore.DbMigrator/Logs/*
+src/BookStore.Blazor.Server/Logs/*
+src/BookStore.Blazor.Server.Tiered/Logs/*

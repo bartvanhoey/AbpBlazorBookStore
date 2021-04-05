@@ -8,7 +8,7 @@
           "name": "Blazor",
           "type": "blazorwasm",
           "request": "launch",
-          "cwd": "${workspaceFolder}/src/AbpBookStore.Blazor",
+          "cwd": "${workspaceFolder}/src/BookStore.Blazor",
           "url": "https://localhost:44307"
       },
       {
@@ -17,9 +17,9 @@
           "request": "launch",
           "preLaunchTask": "buildApi",
           // If you have changed target frameworks, make sure to update the program path.
-          "program": "${workspaceFolder}/src/AbpBookStore.HttpApi.Host/bin/Debug/net5.0/AbpBookStore.HttpApi.Host.dll",
+          "program": "${workspaceFolder}/src/BookStore.HttpApi.Host/bin/Debug/net5.0/BookStore.HttpApi.Host.dll",
           "args": [],
-          "cwd": "${workspaceFolder}/src/AbpBookStore.HttpApi.Host",
+          "cwd": "${workspaceFolder}/src/BookStore.HttpApi.Host",
           "stopAtEntry": false,
           // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
           "serverReadyAction": {
@@ -39,9 +39,9 @@
           "request": "launch",
           "preLaunchTask": "buildApi",
           // If you have changed target frameworks, make sure to update the program path.
-          "program": "${workspaceFolder}/src/AbpBookStore.HttpApi.Host/bin/Debug/net5.0/AbpBookStore.HttpApi.Host.dll",
+          "program": "${workspaceFolder}/src/BookStore.HttpApi.Host/bin/Debug/net5.0/BookStore.HttpApi.Host.dll",
           "args": [],
-          "cwd": "${workspaceFolder}/src/AbpBookStore.HttpApi.Host",
+          "cwd": "${workspaceFolder}/src/BookStore.HttpApi.Host",
           "stopAtEntry": false,
           // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
           "serverReadyAction": {
@@ -61,9 +61,9 @@
           "request": "launch",
           "preLaunchTask": "buildDbMigrator",
           // If you have changed target frameworks, make sure to update the program path.
-          "program": "${workspaceFolder}/src/AbpBookStore.DbMigrator/bin/Debug/net5.0/AbpBookStore.DbMigrator.dll",
+          "program": "${workspaceFolder}/src/BookStore.DbMigrator/bin/Debug/net5.0/BookStore.DbMigrator.dll",
           "args": [],
-          "cwd": "${workspaceFolder}/src/AbpBookStore.DbMigrator",
+          "cwd": "${workspaceFolder}/src/BookStore.DbMigrator",
           "stopAtEntry": false,
           // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
           "serverReadyAction": {
@@ -83,9 +83,9 @@
           "request": "launch",
           "preLaunchTask": "buildDbMigrator",
           // If you have changed target frameworks, make sure to update the program path.
-          "program": "${workspaceFolder}/src/AbpBookStore.DbMigrator/bin/Debug/net5.0/AbpBookStore.DbMigrator.dll",
+          "program": "${workspaceFolder}/src/BookStore.DbMigrator/bin/Debug/net5.0/BookStore.DbMigrator.dll",
           "args": [],
-          "cwd": "${workspaceFolder}/src/AbpBookStore.DbMigrator",
+          "cwd": "${workspaceFolder}/src/BookStore.DbMigrator",
           "stopAtEntry": false,
           "env": {
               "ASPNETCORE_ENVIRONMENT": "Staging"
@@ -101,4 +101,4 @@
           "configurations": ["ApiDevelopment", "Blazor"]
       }
   ]
-}   
+} 
