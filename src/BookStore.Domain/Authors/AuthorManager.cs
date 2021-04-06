@@ -31,11 +31,5 @@ namespace BookStore.Domain.Authors
             if (existingAuthor != null && existingAuthor.Id != author.Id) { throw new AuthorAlreadyExistsException(newName); }
             author.ChangeName(newName);
         }
-
-
-
-
-
-
     }
 }
