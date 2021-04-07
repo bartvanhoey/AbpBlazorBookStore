@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BookStore.Application.Contracts.Authors;
 using BookStore.Application.Contracts.Books.Dtos;
 
 namespace BookStore.Blazor
@@ -10,6 +11,7 @@ namespace BookStore.Blazor
             //Define your AutoMapper configuration here for the Blazor project.
 
             CreateMap<BookDto, CreateUpdateBookDto>();
+
         }
     }
 }

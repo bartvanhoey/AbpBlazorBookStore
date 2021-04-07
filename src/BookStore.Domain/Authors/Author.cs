@@ -9,8 +9,8 @@ namespace BookStore.Domain.Authors
   public class Author : FullAuditedAggregateRoot<Guid>
   {
     public string Name { get; private set; }
-    public DateTime BirthDate { get; private set; }
-    public string ShortBio { get; private set; }
+    public DateTime BirthDate { get; set; }
+    public string ShortBio { get; set; }
 
     private Author() { }
 
@@ -26,8 +26,6 @@ namespace BookStore.Domain.Authors
         SetName(name);
         return this;
     }
-
-
 
     private void SetName(string name)
     {

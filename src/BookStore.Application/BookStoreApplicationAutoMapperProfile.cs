@@ -1,19 +1,25 @@
 ﻿using AutoMapper;
+using BookStore.Application.Contracts.Authors;
 using BookStore.Application.Contracts.Books.Dtos;
+using BookStore.Domain.Authors;
 using BookStore.Domain.Books;
 
 namespace BookStore
 {
-    public class BookStoreApplicationAutoMapperProfile : Profile
+  public class BookStoreApplicationAutoMapperProfile : Profile
+  {
+    public BookStoreApplicationAutoMapperProfile()
     {
-        public BookStoreApplicationAutoMapperProfile()
-        {
-            /* You can configure your AutoMapper mapping configuration here.
-             * Alternatively, you can split your mapping configurations
-             * into multiple profile classes for a better organization. */
+      /* You can configure your AutoMapper mapping configuration here.
+       * Alternatively, you can split your mapping configurations
+       * into multiple profile classes for a better organization. */
 
-            CreateMap<Book,BookDto>();
-            CreateMap<CreateUpdateBookDto, Book>();
-        }
+      CreateMap<Book, BookDto>();
+      CreateMap<CreateUpdateBookDto, Book>();
+
+      CreateMap<Author, AuthorDto>();
+
+
     }
+  }
 }
